@@ -1,5 +1,6 @@
 # DiscussIt
-Platform for discussions for little companies
+Platform for discussions for little companies.
+
 At some point, there is a toy project: e.g I use a SQLite database.
 
 # Dependencies
