@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+	<h1>Posts</h1>
+	{% for post in posts %}
+		<h2>
+			<a href='{% url "post_detail" post.publish.year post.publish.month post.publish.day post.slug %}'>
+				{{ post.title }}
+			</a>
+		</h2>
+		<p class="date">
+			Published {{ post.publish }} by {{ post.author }}
+		</p>
+		
+		{{ post.body|truncatewords:30|linebreaks }}
+	{% endfor %}
+
+	<p> Do you think something is missing? You can write a post about it! </p>
+	{% if new_post %}
+        <h2>Your post has been successfully sent to moderation.</h2>
+    {% else %}
+        <h2>Add a new post</h2>
+        <form method="post">
+            {{ post_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Add post"></p>
+        </form>
+    {% endif %}
+
+{% endblock %}
